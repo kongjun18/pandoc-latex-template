@@ -13,8 +13,8 @@ containsElement () {
   return 1
 }
 
-# these examples are skipped because they don't run on travis (for now)
-skippedExamples=("language-chinese" "language-japanese" "language-persian")
+# these examples are skipped because they don't run in CI builds (for now)
+skippedExamples=("language-chinese" "language-japanese")
 
 # loop all files in the current folder
 for f in *; do

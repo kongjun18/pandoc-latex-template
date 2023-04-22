@@ -2,9 +2,7 @@
 
 # Eisvogel
 
-[![Build Status](https://travis-ci.com/Wandmalfarbe/pandoc-latex-template.svg?branch=master)](https://travis-ci.com/Wandmalfarbe/pandoc-latex-template)
-
-A clean **pandoc LaTeX template** to convert your markdown files to PDF or LaTeX. It is designed for lecture notes and exercises with a focus on computer science. The template is compatible with pandoc 2.
+A clean **pandoc LaTeX template** to convert your markdown files to PDF or LaTeX. It is designed for lecture notes and exercises with a focus on computer science. The template is compatible with pandoc 3.
 
 ## Preview
 
@@ -22,6 +20,36 @@ A clean **pandoc LaTeX template** to convert your markdown files to PDF or LaTeX
       - Windows Vista or later: `C:\Users\USERNAME\AppData\Roaming\pandoc\templates\`
 
     If there are no folders called `templates` or `pandoc` you need to create them and put the template `eisvogel.latex` inside. You can find the default user data directory on your system by looking at the output of `pandoc --version`.
+
+
+### Docker image
+
+Alternatively, if you don't want to install LaTeX, you can use the Docker 
+image named [pandoc/extra]. The image contains pandoc, LaTeX and a curated
+selection of components such as the eisvogel template, pandoc filters and
+open source fonts. A common use of the image looks like this 
+(line breaks for readability):
+
+``` bash
+docker run --rm \
+       --volume "$(pwd):/data" \
+       --user $(id -u):$(id -g) \
+       pandoc/extra example.md -o example.pdf --template eisvogel --listings
+```
+
+For frequent command line use, you can define the following shell alias:
+
+``` bash
+alias pandock='docker run --rm -v "$(pwd):/data" -u $(id -u):$(id -g) pandoc/extra'
+```
+
+The example invocation with Docker from above now looks like this:
+
+``` bash
+pandock example.md -o example.pdf --template eisvogel --listings
+```
+
+[pandoc/extra]: https://hub.docker.com/r/pandoc/extra
 
 ## Usage
 
